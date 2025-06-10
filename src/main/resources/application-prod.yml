@@ -1,0 +1,10 @@
+# IntelliJに環境変数を設定したため開発環境の時はこっちが実行される
+# Renderの環境変数に設定する
+# SPRING_PROFILES_ACTIVE=prod , DB_URL, DB_USER, DB_PASS
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+  jpa:
+    show-sql: false

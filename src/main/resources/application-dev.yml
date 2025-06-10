@@ -1,0 +1,12 @@
+# IntelliJに環境変数を設定したため開発環境の時はこっちが実行される
+# SPRING_PROFILES_ACTIVE=dev
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+#    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true

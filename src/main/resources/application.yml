@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: kajikashiApp
   flyway:
     enabled: true
     locations: classpath:db/migration

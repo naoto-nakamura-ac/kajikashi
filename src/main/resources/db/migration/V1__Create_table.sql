@@ -1,12 +1,12 @@
 CREATE TABLE IF NOT EXISTS "family" (
-    "id" serial PRIMARY KEY,
+    "id" bigserial PRIMARY KEY,
     "name" varchar(100) NOT NULL,
     "code" varchar(255) NOT NULL UNIQUE,
     "created_at" timestamp with time zone NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "users" (
-    "id" serial PRIMARY KEY,
+    "id" bigserial PRIMARY KEY,
     "email" varchar(100) NOT NULL,
     "name" varchar(100) NOT NULL,
     "family_id" bigint NOT NULL,
@@ -16,20 +16,22 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 
 CREATE TABLE IF NOT EXISTS "task_categories" (
-    "id" serial PRIMARY KEY,
-    "name" varchar(100) NOT NULL
+    "id" bigserial PRIMARY KEY,
+    "name" varchar(100) NOT NULL,
+    "created_at" timestamp with time zone NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS "task_types" (
-    "id" serial PRIMARY KEY,
+    "id" bigserial PRIMARY KEY,
     "category_id" bigint NOT NULL,
     "name" varchar(100) NOT NULL,
     "point" bigint NOT NULL,
+    "created_at" timestamp with time zone NOT NULL,
     CONSTRAINT "task_types_fk1" FOREIGN KEY ("category_id") REFERENCES "task_categories"("id")
 );
 
 CREATE TABLE IF NOT EXISTS "tasks" (
-    "id" serial PRIMARY KEY,
+    "id" bigserial PRIMARY KEY,
     "user_id" bigint NOT NULL,
     "task_type_id" bigint NOT NULL,
     "created_at" timestamp with time zone NOT NULL,
@@ -38,7 +40,7 @@ CREATE TABLE IF NOT EXISTS "tasks" (
 );
 
 CREATE TABLE IF NOT EXISTS "sessions" (
-    "id" serial PRIMARY KEY,
+    "id" bigserial PRIMARY KEY,
     "user_id" bigint NOT NULL,
     "token" varchar(255) NOT NULL UNIQUE,
     "expires_at" timestamp with time zone NOT NULL,

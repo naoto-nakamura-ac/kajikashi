@@ -25,15 +25,9 @@ data class Task(
     @JoinColumn(name = "user_id", nullable = false)
     val user: User,
 
-    @Column(nullable = false,unique = true)
-    val token: String,
-
     @ManyToOne
     @JoinColumn(name = "task_type_id", nullable = false)
     val taskType: TaskType,
-
-    @Column(name = "expires_at", nullable = false)
-    val expiresAt: Instant,
 
     @CreatedDate
     @Column(name = "created_at" , updatable = false)

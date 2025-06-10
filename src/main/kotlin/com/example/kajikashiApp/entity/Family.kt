@@ -16,7 +16,7 @@ import java.time.Instant
 @EntityListeners(AuditingEntityListener::class)
 data class Family(
     @Id
-    @GeneratedValue(GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @Column(nullable = false, length = 100)

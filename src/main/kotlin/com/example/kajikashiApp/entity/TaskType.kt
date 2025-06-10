@@ -18,7 +18,7 @@ import java.time.Instant
 @EntityListeners(AuditingEntityListener::class)
 data class TaskType(
     @Id
-    @GeneratedValue(GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
     @ManyToOne

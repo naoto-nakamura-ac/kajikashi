@@ -1,6 +1,5 @@
 CREATE TABLE IF NOT EXISTS "family" (
     "id" bigserial PRIMARY KEY,
-    "name" varchar(100) NOT NULL,
     "code" varchar(255) NOT NULL UNIQUE,
     "created_at" timestamp with time zone NOT NULL
 );

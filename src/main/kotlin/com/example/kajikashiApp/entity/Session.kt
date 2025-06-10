@@ -24,7 +24,7 @@ data class Session(
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User,
+    val user: User?,
 
 
     @Column(nullable = false,unique = true)
@@ -35,5 +35,5 @@ data class Session(
 
     @CreatedDate
     @Column(name = "created_at" , updatable = false)
-    val createdAt: Instant? = null,
+    var createdAt: Instant? = null,
 )

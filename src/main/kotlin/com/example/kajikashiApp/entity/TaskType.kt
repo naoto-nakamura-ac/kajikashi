@@ -33,5 +33,5 @@ data class TaskType(
 
     @CreatedDate
     @Column(name = "created_at" , updatable = false)
-    val createdAt: Instant? = null,
+    var createdAt: Instant? = null,
     )

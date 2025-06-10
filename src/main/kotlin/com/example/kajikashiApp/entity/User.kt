@@ -21,7 +21,7 @@ data class User(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(nullable=false, length=100)
+    @Column(nullable=false, length=100, unique = true)
     val email: String,
 
     @Column(nullable = false, length = 100)
@@ -29,12 +29,12 @@ data class User(
 
     @ManyToOne
     @JoinColumn(name = "family_id", nullable = false)
-    val family: Family,
+    val family: Family?,
 
     @Column(name = "password_hash", nullable = false)
     val passwordHash: String,
 
     @CreatedDate
     @Column(name = "created_at" , updatable = false)
-    val createdAt: Instant? = null,
+    var createdAt: Instant? = null,
 )

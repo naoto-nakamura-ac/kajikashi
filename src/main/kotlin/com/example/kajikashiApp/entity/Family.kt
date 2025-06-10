@@ -19,13 +19,10 @@ data class Family(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
-    @Column(nullable = false, length = 100)
-    val name: String,
-
     @Column(nullable=false, length=255)
     val code: String,
 
     @CreatedDate
     @Column(name = "created_at" , updatable = false)
-    val createdAt: Instant? = null,
+    var createdAt: Instant? = null,
 )

@@ -19,7 +19,7 @@ data class RegisterResponse(
 data class LoginResponse(
     val email: String,
     val name: String,
-    val familyID: Family?,
+    val family: Family?,
     val token: String,
 )
 data class LoginRequest(
@@ -27,3 +27,8 @@ data class LoginRequest(
     val password: String
 )
 
+data class GetAuthResponse(
+    val email: String?,
+    val name: String?,
+    val family: Family?,
+)

@@ -118,4 +118,5 @@ class KajikashiAppApplicationTests(
 		val response = restTemplate.exchange("http://localhost:$port/api/auth/logout", HttpMethod.DELETE,entity, String::class.java)
 		assertThat(response.statusCode, equalTo(HttpStatus.OK))
 	}
+
 }

@@ -1,5 +1,6 @@
 package com.example.kajikashiApp.service
 
+import com.example.kajikashiApp.dto.GetAuthResponse
 import com.example.kajikashiApp.dto.LoginRequest
 import com.example.kajikashiApp.dto.LoginResponse
 import com.example.kajikashiApp.dto.RegisterRequest
@@ -30,8 +31,19 @@ class AuthService(
     private val familyRepository: FamilyRepository,
     private val sessionRepository: SessionRepository,
 ) {
-    fun getAuth(): String {
-        return "OK"
+    fun getAuth(authHeader: String): GetAuthResponse? {
+        val token = authHeader.removePrefix("Bearer ").takeIf { it.isNotBlank() }
+        if (token != null) {
+            val findToken = sessionRepository.findByToken(token)
+            val sessionUser = findToken?.user
+            return GetAuthResponse(
+                email = sessionUser?.email,
+                name = sessionUser?.name,
+                family = sessionUser?.family,
+            )
+
+        }
+        return null
     }
     fun isCheck(request: RegisterRequest): Boolean {
         val findEmail = userRepository.findByEmail(request.email)
@@ -106,12 +118,12 @@ class AuthService(
                 email = findUser.email,
                 name = findUser.name,
                 token = token,
-                familyID = findUser.family
+                family = findUser.family
             )
         }
         return null
     }
-    @Transactional
+//    @Transactional
     fun logout(authHeader: String):String? {
         val token = authHeader.removePrefix("Bearer ").takeIf { it.isNotBlank() }
         if(token != null){

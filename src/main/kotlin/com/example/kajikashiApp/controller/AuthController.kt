@@ -1,6 +1,7 @@
 package com.example.kajikashiApp.controller
 
 
+import com.example.kajikashiApp.dto.GetAuthResponse
 import com.example.kajikashiApp.dto.LoginRequest
 import com.example.kajikashiApp.dto.LoginResponse
 import com.example.kajikashiApp.dto.RegisterRequest
@@ -18,16 +19,16 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class AuthController(val authService: AuthService) {
 
-    @GetMapping("/api/auth")
-    fun getMe(): String{
-        val result = authService.getAuth()
+    @GetMapping("/api/auth/me")
+    fun getMe(@RequestHeader("Authorization") requestHeader: String): GetAuthResponse?{
+        val result = authService.getAuth(requestHeader)
         return result
     }
 
     @PostMapping("/api/auth/register")
     fun register(@RequestBody request: RegisterRequest): ResponseEntity<RegisterResponse> {
         val isCheck = authService.isCheck(request)
-
+        println(isCheck)
         if(!isCheck) {
             return ResponseEntity(HttpStatus.BAD_REQUEST)
         }

@@ -16,7 +16,7 @@ class AuthFilter(
 
     override fun shouldNotFilter(request: HttpServletRequest): Boolean {
         val path = request.servletPath
-        return path.startsWith("/api/auth/login") || path.startsWith("/api/auth/register")
+        return path.startsWith("/api/auth/login") || path.startsWith("/api/auth/register") || path.startsWith("/")
     }
 
     override fun doFilterInternal(

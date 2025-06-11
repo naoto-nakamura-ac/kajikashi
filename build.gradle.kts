@@ -1,3 +1,5 @@
+import javax.swing.Spring
+
 plugins {
 	kotlin("jvm") version "1.9.25"
 	kotlin("plugin.spring") version "1.9.25"
@@ -50,12 +52,17 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
-tasks.named<Jar>("bootJar"){
-	archiveFileName.set("kajikashiApp.jar")
-}
+//tasks.named<Jar>("bootJar"){
+//	archiveFileName.set("kajikashiApp.jar")
+//}
 
-tasks.withType<Jar> {
-	manifest {
-		attributes["Main-Class"] = "com.example.kajikashiApp.kajikashiAppApplicationKt"
-	}
+//tasks.withType<Jar> {
+//	manifest {
+//		attributes["Main-Class"] = "com.example.kajikashiApp.KajikashiAppApplicationKt"
+//	}
+//}
+
+tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar>{
+	mainClass.set("com.example.kajikashiApp.KajikashiAppApplicationKt")
+	archiveFileName.set("kajikashiApp.jar")
 }

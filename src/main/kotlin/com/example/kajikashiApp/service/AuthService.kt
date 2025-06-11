@@ -37,9 +37,11 @@ class AuthService(
             val findToken = sessionRepository.findByToken(token)
             val sessionUser = findToken?.user
             return GetAuthResponse(
+                id = sessionUser?.id,
                 email = sessionUser?.email,
                 name = sessionUser?.name,
-                family = sessionUser?.family,
+                familyID = sessionUser?.family!!.id,
+                familyCode = sessionUser.family!!.code
             )
 
         }
@@ -94,7 +96,9 @@ class AuthService(
             email = saved.email,
             name = saved.name,
             familyID = familyID,
-            token = token
+            token = token,
+            familyCode=familyCode,
+            id = saved.id
         )
     }
     fun login(request: LoginRequest): LoginResponse? {
@@ -118,7 +122,9 @@ class AuthService(
                 email = findUser.email,
                 name = findUser.name,
                 token = token,
-                family = findUser.family
+                familyID = findUser.family?.id,
+                familyCode = findUser.family!!.code,
+                id = findUser.id
             )
         }
         return null

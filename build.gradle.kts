@@ -49,3 +49,7 @@ allOpen {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+tasks.named<Jar>("bootJar"){
+	archiveFileName.set("kajikashiApp.jar")
+}

@@ -23,11 +23,11 @@ data class Task(
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    val user: User,
+    val user: User?,
 
     @ManyToOne
     @JoinColumn(name = "task_type_id", nullable = false)
-    val taskType: TaskType,
+    val taskType: TaskType?,
 
     @CreatedDate
     @Column(name = "created_at" , updatable = false)

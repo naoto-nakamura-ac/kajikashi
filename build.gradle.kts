@@ -53,3 +53,9 @@ tasks.withType<Test> {
 tasks.named<Jar>("bootJar"){
 	archiveFileName.set("kajikashiApp.jar")
 }
+
+tasks.withType<Jar> {
+	manifest {
+		attributes["Main-Class"] = "com.example.kajikashiApp.kajikashiAppApplicationKt"
+	}
+}

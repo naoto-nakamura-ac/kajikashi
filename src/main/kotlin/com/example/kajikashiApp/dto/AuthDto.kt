@@ -14,13 +14,17 @@ data class RegisterResponse(
     val name: String,
     val familyID: Long?,
     val token: String,
+    val familyCode: String,
+    val id: Long?
 )
 
 data class LoginResponse(
     val email: String,
     val name: String,
-    val family: Family?,
+    val familyID: Long?,
+    val familyCode: String,
     val token: String,
+    val id: Long?
 )
 data class LoginRequest(
     val email: String,
@@ -28,7 +32,9 @@ data class LoginRequest(
 )
 
 data class GetAuthResponse(
+    val id: Long?,
     val email: String?,
     val name: String?,
-    val family: Family?,
+    val familyID: Long?,
+    val familyCode: String,
 )

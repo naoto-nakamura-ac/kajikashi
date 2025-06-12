@@ -6,5 +6,5 @@ data class TaskPoint(
 data class SummaryResponse(
     val total: Long,
     val user: String,
-    val byCategory:List<TaskPoint>
+    val byCategory:List<TaskPoint>?
 )

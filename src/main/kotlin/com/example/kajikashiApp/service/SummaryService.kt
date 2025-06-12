@@ -17,21 +17,30 @@ data class SummaryService(
         if(!familyList.isNullOrEmpty()){
             return familyList.map { user ->
                 val taskList = taskService.getTaskLog(user.id,from,to)
-                val byCategory= taskList!!
-                    .groupBy { it.categoryName }
-                    .map { (category,task) ->
-                        TaskPoint(
-                            category = category,
-                            point = task.sumOf { it.point }
-                        )
-                    }
-                val total = taskList.sumOf { it.point }
-                SummaryResponse(
-                    total=total,
-                    user=user.name,
-                    byCategory=byCategory
-                )
+                if(taskList.isNullOrEmpty()) {
+                    SummaryResponse(
+                        total = 0,
+                        user=user.name,
+                        byCategory = null
+                    )
+                }else {
+                    val byCategory = taskList
+                        .groupBy { it.categoryName }
+                        .map { (category, task) ->
+                            TaskPoint(
+                                category = category,
+                                point = task.sumOf { it.point }
+                            )
+                        }
+                    val total = taskList.sumOf { it.point }
+                    SummaryResponse(
+                        total = total,
+                        user = user.name,
+                        byCategory = byCategory
+                    )
+                }
             }
+
         }
         return null
 

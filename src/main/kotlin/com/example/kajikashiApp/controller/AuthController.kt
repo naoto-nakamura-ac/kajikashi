@@ -20,9 +20,12 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(val authService: AuthService) {
 
     @GetMapping("/api/auth/me")
-    fun getMe(@RequestHeader("Authorization") requestHeader: String): GetAuthResponse?{
+    fun getMe(@RequestHeader("Authorization") requestHeader: String): ResponseEntity<GetAuthResponse>{
         val result = authService.getAuth(requestHeader)
-        return result
+        if(result != null){
+            return ResponseEntity.status(HttpStatus.OK).body(result)
+        }
+        return ResponseEntity(HttpStatus.UNAUTHORIZED)
     }
 
     @PostMapping("/api/auth/register")

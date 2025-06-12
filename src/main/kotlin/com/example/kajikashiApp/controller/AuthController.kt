@@ -36,6 +36,9 @@ class AuthController(val authService: AuthService) {
             return ResponseEntity(HttpStatus.BAD_REQUEST)
         }
         val result = authService.register(request)
+        if(result == null){
+            return ResponseEntity(HttpStatus.BAD_REQUEST)
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(result)
     }
     @PostMapping("/api/auth/login")

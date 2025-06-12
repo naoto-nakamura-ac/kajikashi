@@ -54,7 +54,7 @@ class AuthService(
         }
         return true
     }
-    fun register(request: RegisterRequest): RegisterResponse {
+    fun register(request: RegisterRequest): RegisterResponse? {
         val encoder = BCryptPasswordEncoder()
         val hashedPassword = encoder.encode(request.password)
         var familyCode:String
@@ -66,6 +66,9 @@ class AuthService(
             familyRepository.save(newFamily)
         }else{
             familyCode = request.familyCode
+            if(familyRepository.findByCode(familyCode) == null){
+                return null
+            }
         }
 
         val newFamily = familyRepository.findByCode(familyCode)

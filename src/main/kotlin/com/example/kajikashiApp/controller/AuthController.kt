@@ -27,7 +27,6 @@ class AuthController(val authService: AuthService) {
         }
         return ResponseEntity(HttpStatus.UNAUTHORIZED)
     }
-
     @PostMapping("/api/auth/register")
     fun register(@RequestBody request: RegisterRequest): ResponseEntity<RegisterResponse> {
         val isCheck = authService.isCheck(request)
